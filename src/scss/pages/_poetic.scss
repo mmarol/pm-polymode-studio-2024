@@ -1,0 +1,74 @@
+@use "../abstracts/type-styles";
+@use "../abstracts/variables";
+@use "../utilities/mixins";
+
+.poetic__text {
+    display: flex;
+    flex-wrap: wrap;
+    margin: var(--spacing-s);
+    padding-top: var(--spacing-s);
+    @extend %body-xl;
+
+    @include mixins.respond-above(variables.$break-s) {
+        margin: var(--spacing-m);
+        padding-top: var(--spacing-m);
+    }
+    @include mixins.respond-above(variables.$break-m) {
+        margin: var(--spacing-l);
+        padding-top: var(--spacing-l);
+    }
+    @include mixins.respond-above(variables.$break-l) {
+        margin: var(--spacing-xl);
+        padding-top: var(--spacing-xl);
+    }
+}
+
+.poetic__highlight {
+    color: var(--color-primary-1);
+    cursor: pointer;
+}
+
+.poetic__images {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -999;
+}
+
+.poetic__image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 0.2s ease;
+    background-size: cover;
+    background-position: center;
+
+    &.active {
+        opacity: 0.7;
+    }
+
+    img {
+        width: 100%;
+    }
+}
+
+// .tippy-content {
+//     img {
+//         width: 100%;
+//     }
+// }
+
+// .tippy-box[data-animation="scale"][data-state="hidden"] {
+//     transform: scale(0.5);
+//     opacity: 0;
+// }
+// .tippy-box {
+//     opacity: 1;
+// }

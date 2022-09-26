@@ -1,0 +1,287 @@
+@use "../utilities/mixins";
+@use "../abstracts/variables";
+
+/*
+Font declarations
+*/
+@font-face {
+    font-family: "PolymodeSans-Var";
+    src: url("../fonts/PolymodeVar-Roman.woff2") format("woff2 supports variations"),
+        url("../fonts/PolymodeVar-Roman.woff2") format("woff2-variations"),
+        url("../fonts/PolymodeVar-Roman.ttf") format("truetype-variations");
+    font-weight: 100 1000;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "PolymodeSans-Var";
+    src: url("../fonts/PolymodeVar-Italic.woff2") format("woff2 supports variations"),
+        url("../fonts/PolymodeVar-Italic.woff2") format("woff2-variations"),
+        url("../fonts/PolymodeVar-Italic.ttf") format("truetype-variations");
+    font-weight: 100 1000;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "ActingBasic";
+    src: url("../fonts/Polymode0000ActingBasic.woff2") format("woff2"),
+        url("../fonts/Polymode0000ActingBasic.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "ActingBasic";
+    src: url("../fonts/Polymode0000ActingBasic-Italic.woff2") format("woff2"),
+        url("../fonts/Polymode0000ActingBasic-Italic.woff") format("woff");
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "ActingBasic";
+    src: url("../fonts/Polymode0000ActingBasic-Bold.woff2") format("woff2"),
+        url("../fonts/Polymode0000ActingBasic-Bold.woff") format("woff");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "ActingBasic";
+    src: url("../fonts/Polymode0000ActingBasic-BoldItalic.woff2") format("woff2"),
+        url("../fonts/Polymode0000ActingBasic-BoldItalic.woff") format("woff");
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Opulence";
+    src: url("../fonts/Polymode1000Opulence.woff2") format("woff2"),
+        url("../fonts/Polymode1000Opulence.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Opulence";
+    src: url("../fonts/Polymode1000Opulence-Bold.woff2") format("woff2"),
+        url("../fonts/Polymode1000Opulence-Bold.woff") format("woff");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+/*
+Type styles
+This uses the type size mixin and variables defined in _type-sizes.scss
+*/
+
+%nav-title {
+    font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
+    font-weight: bold;
+    font-size: var(--type-xl);
+    line-height: 100%;
+    background-image: var(--color-gradient);
+    background-clip: text;
+    text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    font-variation-settings: "RLNS" 0;
+    font-variant-numeric: oldstyle-nums;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+%nav-title-alt {
+    font-family: "PolymodeSans-Var", "Opulence", sans-serif;
+    font-weight: bold;
+    font-size: var(--type-xl);
+    line-height: 100%;
+    background-image: var(--color-gradient);
+    background-clip: text;
+    text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    font-variation-settings: "RLNS" 1000;
+    font-variant-numeric: oldstyle-nums;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+%nav-title-page {
+    font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
+    font-weight: normal;
+    font-size: var(--type-xl);
+    line-height: 100%;
+    letter-spacing: -1px;
+    color: var(--color-text);
+}
+
+%nav-item {
+    font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
+    font-weight: normal;
+    font-size: var(--type-xxxl);
+    line-height: 100%;
+    letter-spacing: -1px;
+    font-variation-settings: "RLNS" 0;
+    font-variant-numeric: oldstyle-nums;
+}
+
+%nav-item-alt {
+    font-family: "PolymodeSans-Var", "Opulence", sans-serif;
+    font-weight: normal;
+    font-size: var(--type-xxxl);
+    line-height: 100%;
+    font-variation-settings: "RLNS" 1000;
+    font-variant-numeric: oldstyle-nums;
+}
+
+%heading-primary {
+    font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
+    font-weight: normal;
+    font-size: var(--type-l);
+    line-height: 120%;
+    color: var(--color-text);
+    font-variant-numeric: oldstyle-nums;
+    font-variation-settings: "RLNS" 300;
+    @include mixins.respond-above(variables.$break-m) {
+        font-size: var(--type-xl);
+    }
+}
+
+%heading-secondary {
+    font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
+    font-weight: normal;
+    font-size: var(--type-l);
+    line-height: 120%;
+    color: var(--color-text);
+    font-variant-numeric: oldstyle-nums;
+    font-variation-settings: "RLNS" 300;
+}
+
+%heading-tertiary {
+    font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
+    font-weight: normal;
+    font-size: var(--type-m);
+    line-height: 120%;
+    color: var(--color-text);
+    font-variant-numeric: oldstyle-nums;
+    font-variation-settings: "RLNS" 300;
+}
+
+%body-large {
+    font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
+    font-weight: normal;
+    font-size: var(--type-m);
+    line-height: 130%;
+    color: var(--color-text);
+    font-variant-numeric: oldstyle-nums;
+}
+
+%body-small {
+    font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
+    font-weight: normal;
+    font-size: var(--type-s);
+    line-height: 130%;
+    color: var(--color-text);
+    font-variant-numeric: oldstyle-nums;
+}
+
+%body-xl {
+    font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
+    font-weight: normal;
+    font-size: var(--type-xxl);
+    line-height: 130%;
+    color: var(--color-text);
+    font-variant-numeric: oldstyle-nums;
+    font-variation-settings: "RLNS" 300;
+}
+
+%tag-large {
+    font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
+    font-weight: normal;
+    font-size: var(--type-l);
+    line-height: 100%;
+    font-variant-numeric: oldstyle-nums;
+}
+
+%tag-small {
+    font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
+    font-weight: normal;
+    font-size: var(--type-s);
+    line-height: 100%;
+}
+
+%button {
+    font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
+    font-weight: bold;
+    font-size: var(--type-m);
+    line-height: 100%;
+    color: var(--color-text);
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0 var(--spacing-xs) 0 0;
+    margin: 0;
+    font-variant-numeric: oldstyle-nums;
+
+    &:hover {
+        color: var(--color-primary-1);
+    }
+
+    &:active {
+        color: var(--color-primary-1);
+    }
+}
+
+%footer {
+    font-family: "ActingBasic", sans-serif;
+    font-weight: normal;
+    font-size: var(--type-xs);
+    line-height: 130%;
+    color: var(--color-text);
+    font-variant-numeric: oldstyle-nums;
+}
+
+%internal-link {
+    color: var(--color-primary-2);
+    transition: color 0.2s ease;
+    text-decoration: none;
+    font-variant-numeric: oldstyle-nums;
+
+    &:hover {
+        color: var(--color-primary-1);
+    }
+}
+
+%external-link {
+    color: var(--color-secondary-2);
+    transition: color 0.2s ease;
+    text-decoration: none;
+    font-variant-numeric: oldstyle-nums;
+
+    &:hover {
+        color: var(--color-secondary-1);
+    }
+
+    &::after {
+        content: "↗";
+        display: inline-block;
+        // margin-left: var(--spacing-xxs);
+    }
+}
+
+%antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+}

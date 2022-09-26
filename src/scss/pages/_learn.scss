@@ -1,0 +1,156 @@
+@use "../abstracts/type-styles";
+@use "../abstracts/variables";
+@use "../utilities/mixins";
+
+.learn__grid {
+    margin: var(--spacing-s);
+    padding-top: var(--spacing-s);
+    @include mixins.respond-above(variables.$break-s) {
+        margin: var(--spacing-m);
+        padding-top: var(--spacing-m);
+    }
+    @include mixins.respond-above(variables.$break-m) {
+        margin: var(--spacing-l);
+        padding-top: var(--spacing-l);
+    }
+    @include mixins.respond-above(variables.$break-l) {
+        margin: var(--spacing-xl);
+        padding-top: var(--spacing-xl);
+    }
+}
+
+.learn__header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    p {
+        margin: 0;
+    }
+}
+
+.learn__short-description {
+    @extend %heading-secondary;
+    margin-bottom: var(--spacing-m);
+    @include mixins.columns(8);
+
+    @include mixins.respond-above(variables.$break-s) {
+        @include mixins.columns(8);
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+        @include mixins.columns(7);
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        @include mixins.columns(4);
+    }
+}
+
+.learn__long-description {
+    @extend %body-large;
+    margin-bottom: var(--spacing-m);
+    @include mixins.columns(8);
+
+    @include mixins.respond-above(variables.$break-s) {
+        @include mixins.columns(8);
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+        @include mixins.columns(7);
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        @include mixins.columns(4);
+    }
+}
+
+.opportunities {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+
+    * {
+        transition: all 0.2s ease;
+    }
+}
+
+.opportunity {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    padding-bottom: var(--spacing-xl);
+    box-sizing: border-box;
+    flex-basis: 100%;
+    width: 100%;
+
+    @include mixins.respond-above(variables.$break-s) {
+        flex-basis: calc(50% - var(--spacing-xl));
+        width: calc(50% - var(--spacing-xl));
+
+        &:nth-child(3) {
+            margin-top: var(--spacing-xxxxl);
+        }
+    }
+}
+
+.opportunity__anchor {
+    margin-top: calc(var(--spacing-xxl) * -1);
+}
+
+.opportunity__spacer {
+    width: var(--spacing-xl);
+    height: var(--spacing-xl);
+}
+
+.opportunity__tags {
+}
+
+.opportunity__tag {
+    @extend %tag-small;
+    margin: 0 var(--spacing-xs) 0 0;
+    display: inline-block;
+    color: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.opportunity__title {
+    @extend %heading-primary;
+    margin: var(--spacing-xs) 0 var(--spacing-m) 0;
+}
+
+.opportunity__subtitle {
+    @extend %heading-primary;
+    font-style: italic;
+}
+
+.opportunity__image {
+    width: 100%;
+    margin-bottom: var(--spacing-s);
+}
+
+.opportunity__description {
+    @extend %body-large;
+    width: 100%;
+
+    a {
+        @extend %internal-link;
+    }
+
+    a[target="_blank"] {
+        @extend %external-link;
+    }
+}
+
+.opportunity__link {
+}
+
+.opportunity__link--external {
+    @extend %external-link;
+}
+
+.opportunity__link--internal {
+    @extend %internal-link;
+}

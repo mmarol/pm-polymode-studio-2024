@@ -1,0 +1,128 @@
+@use "../abstracts/type-styles";
+@use "../abstracts/variables";
+@use "../utilities/mixins";
+
+.glide__arrow {
+    position: absolute;
+    display: block;
+    top: 50%;
+    z-index: 2;
+    color: var(--color-background);
+    text-transform: uppercase;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    border-radius: none;
+    box-shadow: none;
+    text-shadow: none;
+    opacity: 1;
+    cursor: pointer;
+    transition: opacity 150ms ease, border 300ms ease-in-out;
+    transform: translateY(-50%);
+    line-height: 1;
+    -webkit-appearance: none !important;
+
+    svg {
+        width: var(--spacing-l);
+
+        @include mixins.respond-above(variables.$break-s) {
+            width: var(--spacing-xl);
+        }
+
+        @include mixins.respond-above(variables.$break-m) {
+            width: auto;
+        }
+    }
+
+    path {
+        fill: var(--color-text);
+        transition: fill 0.2s ease;
+    }
+
+    &:hover {
+        path {
+            fill: var(--color-primary-1);
+        }
+    }
+}
+
+.glide__arrow--left {
+    left: 0;
+}
+
+.glide__arrow--right {
+    right: 0;
+}
+
+.glide__track {
+    height: 100%;
+}
+
+.glide__slides {
+    align-items: center;
+    height: 100%;
+}
+
+.glide__slide {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    padding: 0 var(--spacing-xs);
+
+    @include mixins.respond-above(variables.$break-s) {
+        padding: 0;
+    }
+
+    img,
+    video {
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+        padding: 0 var(--spacing-xs);
+
+        @include mixins.respond-above(variables.$break-s) {
+            padding: 0;
+        }
+    }
+
+    iframe {
+        width: calc(100vw);
+        height: calc(56.25vw);
+        box-sizing: border-box;
+        padding: var(--spacing-xl);
+    }
+
+    figcaption {
+        width: 100%;
+    }
+}
+
+.glide__bullets {
+    position: absolute;
+    z-index: 2;
+    // bottom: 2em;
+    left: 50%;
+    display: inline-flex;
+    list-style: none;
+    transform: translateX(-50%);
+    margin-top: var(--spacing-m);
+}
+
+.glide__bullet {
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 5px;
+    height: 5px;
+    padding: 0;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    transition: all 300ms ease-in-out;
+    cursor: pointer;
+    line-height: 0;
+    box-shadow: 0 0.25em 0.5em 0 rgba(0, 0, 0, 0.1);
+    margin: 0 0.25em;
+    -webkit-appearance: none !important;
+}
+
+.glide__bullet--active {
+    background-color: var(--color-primary-1);
+}

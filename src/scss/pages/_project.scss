@@ -1,0 +1,218 @@
+@use "../abstracts/type-styles";
+@use "../abstracts/variables";
+@use "../utilities/mixins";
+
+.project {
+    margin: var(--spacing-s);
+    padding-top: var(--spacing-s);
+    @include mixins.respond-above(variables.$break-s) {
+        margin: var(--spacing-m);
+        padding-top: var(--spacing-m);
+    }
+    @include mixins.respond-above(variables.$break-m) {
+        margin: var(--spacing-l);
+        padding-top: var(--spacing-l);
+    }
+    @include mixins.respond-above(variables.$break-l) {
+        margin: var(--spacing-xl);
+        padding-top: var(--spacing-xl);
+    }
+}
+
+.project__details {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.project__information {
+    @extend %body-large;
+    @include mixins.columns(8);
+
+    @include mixins.respond-above(variables.$break-s) {
+        @include mixins.columns(8);
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+        @include mixins.columns(5);
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        @include mixins.columns(4, 1);
+    }
+
+    a {
+        @extend %internal-link;
+    }
+
+    a[target="_blank"] {
+        @extend %external-link;
+    }
+}
+
+.project__title {
+    @extend %heading-primary;
+}
+
+.project__subtitle {
+    @extend %heading-secondary;
+}
+
+.project__deliverable-details {
+    @include mixins.columns(8);
+    @include mixins.respond-above(variables.$break-s) {
+        @include mixins.columns(8);
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+        @include mixins.columns(3);
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        @include mixins.columns(3);
+    }
+}
+
+.project__deliverable-buttons {
+    overflow: hidden;
+    margin-top: var(--spacing-m);
+}
+
+.project__deliverable-button {
+    @extend %button;
+    transition: color 0.3s ease;
+    cursor: pointer;
+
+    &.active {
+        color: var(--color-primary-1) !important;
+    }
+}
+
+.project__deliverable-content {
+    display: none;
+
+    &.active {
+        display: block;
+    }
+}
+
+.project__deliverable-info {
+    margin-top: var(--spacing-xs);
+    p {
+        margin: 0;
+    }
+}
+
+.project__carousels {
+    flex-basis: 100%;
+    width: 100%;
+}
+.project__carousel {
+    height: 50vh;
+    position: relative;
+    margin-top: var(--spacing-l);
+    margin-bottom: var(--spacing-xxl);
+
+    @include mixins.respond-above(variables.$break-s) {
+        height: 50vh;
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+        height: 80vh;
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        height: 100vh;
+    }
+
+    img,
+    video {
+        // object-fit: contain;
+        // width: 100%;
+        // height: 100%;
+        padding: 0 var(--spacing-xs);
+
+        @include mixins.respond-above(variables.$break-s) {
+            padding: 0;
+        }
+    }
+
+    iframe {
+        width: calc(100vw);
+        height: calc(56.25vw);
+        box-sizing: border-box;
+        padding: var(--spacing-xl);
+    }
+}
+
+.project__research {
+}
+
+.research__title {
+    @extend %heading-tertiary;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: var(--spacing-xxl);
+    margin-bottom: 0;
+}
+
+.research__subtitle {
+    @extend %heading-secondary;
+    margin-top: 0;
+    margin-bottom: var(--spacing-s);
+}
+
+.research__description {
+    margin-bottom: var(--spacing-l);
+    p {
+        margin: 0;
+    }
+
+    a {
+        @extend %internal-link;
+    }
+
+    a[target="_blank"] {
+        @extend %external-link;
+    }
+}
+
+.research__two-columns {
+    columns: 1;
+
+    @include mixins.respond-above(variables.$break-m) {
+        columns: 2;
+        grid-column-gap: var(--spacing-xxl);
+        column-gap: var(--spacing-xxl);
+    }
+}
+
+.research__one-column {
+    width: 100%;
+    @include mixins.respond-above(variables.$break-m) {
+        @include mixins.columns(4, 1);
+    }
+}
+
+.research__carousel {
+    width: 100%;
+}
+
+.research-carousel__image {
+    margin: 0;
+    padding: 0;
+
+    img {
+        padding: 0;
+    }
+}
+
+.research-carousel__caption {
+    @extend %footer;
+    margin-top: var(--spacing-s);
+    width: 100%;
+    padding: 0 var(--spacing-xs);
+
+    @include mixins.respond-above(variables.$break-m) {
+        // width: calc(100vw / 3);
+    }
+}

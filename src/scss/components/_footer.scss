@@ -1,0 +1,41 @@
+@use "../utilities/mixins";
+@use "../abstracts/type-styles";
+@use "../abstracts/variables";
+
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    z-index: 100;
+    background: linear-gradient(var(--color-transparent), var(--color-background) 50%);
+    box-sizing: border-box;
+    // background: red;
+
+    padding: var(--spacing-s);
+    padding-top: var(--spacing-s);
+    @include mixins.respond-above(variables.$break-s) {
+        padding: var(--spacing-m);
+        padding-top: var(--spacing-m);
+    }
+    @include mixins.respond-above(variables.$break-m) {
+        padding: var(--spacing-l);
+        padding-top: var(--spacing-l);
+    }
+    @include mixins.respond-above(variables.$break-l) {
+        padding: var(--spacing-xl);
+        padding-top: var(--spacing-xl);
+    }
+}
+
+.footer__item {
+    @extend %footer;
+}
+
+.footer__link {
+    margin-right: var(--spacing-xs);
+    @extend %internal-link;
+
+    &[target="_blank"] {
+        @extend %external-link;
+    }
+}

@@ -1,0 +1,30 @@
+// Base
+@import "base/normalize";
+@import "base/base";
+
+// Components
+@import "components/carousel";
+@import "components/navigation";
+@import "components/footer";
+
+// Layout
+
+// Themes
+// @import "themes/theme";
+// @import "themes/admin";
+
+// Pages
+@import "pages/home";
+@import "pages/project";
+@import "pages/learn";
+@import "pages/about";
+@import "pages/play";
+@import "pages/poetic";
+
+// Vendors
+// @import "node_modules/slick-carousel/slick/slick.scss";
+// @import "node_modules/slick-carousel/slick/slick-theme.scss";
+// @import "tippy.js/animations/scale.css";
+@import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
+@import "vendors/carousel-overrides";
+// @import "node_modules/@glidejs/glide/src/assets/sass/glide.theme";
