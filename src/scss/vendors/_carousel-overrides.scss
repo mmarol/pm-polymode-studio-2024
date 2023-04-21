@@ -86,8 +86,9 @@
     }
 
     iframe {
-        width: calc(100vw);
-        height: calc(56.25vw);
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
         box-sizing: border-box;
         padding: var(--spacing-xl);
     }

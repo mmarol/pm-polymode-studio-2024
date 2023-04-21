@@ -22,11 +22,25 @@
 			<article class="project-grid__item project-grid__item--{{ item.homepage_size|lower }}">
 				<figure class="project-grid__image-container">
 					<a href="{{ item_url }}" class="project-grid__link">
-						{% if Image(item.thumbnail_image).post_mime_type == "image/gif" %}
-							<img class="project-grid__image lazyload" src="{{ Image(item.thumbnail_image).src|resize(300) }}" alt="{{ Image(item.thumbnail_image).alt }}" data-src="{{ Image(item.thumbnail_image).src }}" data-srcset="{{ Image(item.thumbnail_image).srcset }}" data-sizes="auto">
+						{% if item.thumbnail_video %}
+							{% set videoSrc = item.meta('thumbnail_video')|split("src=") %}
+							{% set videoUrl = videoSrc[1]|split('"') %}
+							{% set videoWidth = item.meta('thumbnail_video')|split("width=") %}
+							{% set videoWidthValue = videoWidth[1]|split('"') %}
+							{% set videoHeight = item.meta('thumbnail_video')|split("height=") %}
+							{% set videoHeightValue = videoHeight[1]|split('"') %}
+							{% set videoRatio = videoHeightValue[1]|number_format / videoWidthValue[1]|number_format * 100 %}
+							<div class="project-grid__video-container" width="{{ videoWidthValue[1] }}" height="{{ videoHeightValue[1] }}" style="padding-bottom:{{videoRatio}}%;">
+								<iframe class="project-grid__video lazyload" src='{{ videoUrl[1] }}&autoplay=1&loop=1&autopause=0&background=1' frameborder='0' allow='autoplay; encrypted-media;'></iframe>
+							</div>
 						{% else %}
-							<img class="project-grid__image lazyload" src="{{ Image(item.thumbnail_image).src|resize(300) }}" alt="{{ Image(item.thumbnail_image).alt }}" data-src="{{ Image(item.thumbnail_image).src|resize(resizeSize) }}" data-srcset="{{ Image(item.thumbnail_image).srcset }}" data-sizes="auto">
+							{% if Image(item.thumbnail_image).post_mime_type == "image/gif" %}
+								<img class="project-grid__image lazyload" src="{{ Image(item.thumbnail_image).src }}" alt="{{ Image(item.thumbnail_image).alt }}" data-src="{{ Image(item.thumbnail_image).src }}" data-srcset="{{ Image(item.thumbnail_image).srcset }}" data-sizes="auto">
+							{% else %}
+								<img class="project-grid__image lazyload" src="{{ Image(item.thumbnail_image).src|resize(300) }}" alt="{{ Image(item.thumbnail_image).alt }}" data-src="{{ Image(item.thumbnail_image).src|resize(resizeSize) }}" data-srcset="{{ Image(item.thumbnail_image).srcset }}" data-sizes="auto">
+							{% endif %}
 						{% endif %}
+
 
 						<h2 class="project-grid__title project-grid__title--{{ item.homepage_size|lower }}">{{ item.title }}
 						</h2>
@@ -46,3 +60,7 @@
 
 	</main>
 {% endblock %}
+
+
+{# https://player.vimeo.com/video/813344000 #}
+{# https://player.vimeo.com/video/813343926 #}

@@ -37,7 +37,6 @@
 
 				{% endfor %}
 			</aside>
-
 			<section class="project__carousels">
 				{% for deliverable in post.meta('deliverables') %}
 					{% set hash_value = deliverable.type.name|replace({' ': '-'})|lower %}
