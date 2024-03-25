@@ -50,17 +50,34 @@
 									<ul class="glide__slides">
 									{% for media in deliverable.carousel %}
 										{% if media.image_or_video == 'Image' %}
-											<img class="carousel__image carousel__image-loader glide__slide lazyload" src="{{ Image(media.image).src|resize(300) }}" alt="{{ Image(media.image).alt }}" data-sizes="auto" data-src="{{ Image(media.image).src }}" data-srcset="{{ Image(media.image).srcset }}">
+											<img class="carousel__image carousel__image-loader glide__slide lazyload" src="{{ get_image(media.image).src|resize(300) }}" alt="{{ get_image(media.image).alt }}" data-sizes="auto" data-src="{{ get_image(media.image).src }}" data-srcset="{{ get_image(media.image).srcset }}">
 										{% elseif media.image_or_video == 'Video' and media.video %}
-											<div class="glide__slide">{{ media.video }}</div>
+											{# non-autoplay video #}
+											{# <div class="glide__slide">{{ media.video }}</div> #}
+
+											{# autoplay video #}
+											{% set videoSrc = media.video|split("src=") %}
+											{% set videoUrl = videoSrc[1]|split('"') %}
+											{% set videoWidth = media.video|split("width=") %}
+											{% set videoWidthValue = videoWidth[1]|split('"') %}
+											{% set videoHeight = media.video|split("height=") %}
+											{% set videoHeightValue = videoHeight[1]|split('"') %}
+											{% set videoRatio = videoHeightValue[1]|number_format / videoWidthValue[1]|number_format * 100 %}
+											<div class="glide__slide">
+												<div class="project-grid__video-container" width="{{ videoWidthValue[1] }}" height="{{ videoHeightValue[1] }}" style="padding-bottom:{{videoRatio}}%;">
+													<iframe class="project-grid__video" src='{{ videoUrl[1] }}&autoplay=1&loop=1&autopause=0&background=1' frameborder='0' allow='autoplay; encrypted-media;'  loading="lazy"></iframe>
+												</div>
+											</div>
 										{% endif %}
 									{% endfor %}
 									</ul>
 								</div>
+								{% if deliverable.carousel|length > 1 %}
 								<div class="glide__arrows" data-glide-el="controls">
 									<button class="glide__arrow glide__arrow--left carousel__arrow carousel__arrow--left" data-glide-dir="<">{{ source( directory ~ "/dist/img/arrow-left.svg") }}</button>
 									<button class="glide__arrow glide__arrow--right carousel__arrow carousel__arrow--right" data-glide-dir=">">{{ source( directory ~ "/dist/img/arrow-right.svg") }}</button>
 								</div>
+								{% endif %}
 								<div class="glide__bullets" data-glide-el="controls[nav]">
 								{% for item in deliverable.carousel %}
 									<button class="glide__bullet" data-glide-dir="={{ loop.index0 }}"></button>
@@ -85,7 +102,7 @@
 							<div class="project__carousel project__carousel--{{ loop.index }}">
 								{% for media in deliverable.carousel %}
 									{% if media.image_or_video == 'Image' %}
-										<img class="carousel__image carousel__image-loader lazyload" src="{{ Image(media.image).src }}" alt="{{ Image(media.image).alt }}" data-sizes="auto" data-src="{{ Image(media.image).src }}" data-srcset="{{ Image(media.image).srcset }}">
+										<img class="carousel__image carousel__image-loader lazyload" src="{{ get_image(media.image).src }}" alt="{{ get_image(media.image).alt }}" data-sizes="auto" data-src="{{ get_image(media.image).src }}" data-srcset="{{ get_image(media.image).srcset }}">
 									{% elseif media.image_or_video == 'Video' and media.video %}
 										{{ media.video }}
 									{% endif %}
@@ -120,7 +137,7 @@
 							{% for media in post.meta('carousel') %}
 								{% if media.image_or_video == 'Image' %}
 									<figure class="research-carousel__image carousel__image-loader glide__slide">
-										<img class="carousel__image lazyload" src="{{ Image(media.image).src|resize(300) }}" alt="{{ Image(media.image).alt }}" data-src="{{ Image(media.image).src|resize(800) }}">
+										<img class="carousel__image lazyload" src="{{ get_image(media.image).src|resize(300) }}" alt="{{ get_image(media.image).alt }}" data-src="{{ get_image(media.image).src|resize(800) }}">
 										{% if media.caption %}
 											<figcaption class="research-carousel__caption">{{ media.caption }}</figcaption>
 										{% endif %}

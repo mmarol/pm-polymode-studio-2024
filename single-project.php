@@ -19,6 +19,7 @@ $context         = Timber::context();
 $timber_post     = Timber::get_post();
 $context['post'] = $timber_post;
 $context['pages'] = Timber::get_posts($pageArgs);
+
 $templates = array('single-project.twig', 'index.twig');
 
 Timber::render($templates, $context);

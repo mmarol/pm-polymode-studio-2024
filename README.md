@@ -1,4 +1,4 @@
-# Polymode 2022 theme
+# Polymode 2024 theme
 
 This theme is built based on the Timber starter theme.
 

@@ -21,6 +21,17 @@
     }
 }
 
+.group {
+    margin-bottom: var(--spacing-l);
+}
+
+.group__photo {
+    
+    img {
+        width: 100%;
+    }
+}
+
 .studio {
     // @include mixins.columns(4);
     // margin-bottom: var(--spacing-l);

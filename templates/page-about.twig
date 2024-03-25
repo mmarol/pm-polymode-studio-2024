@@ -5,6 +5,13 @@
 
 {% block content %}
 	<main class="about">
+		{% if page.group_photo %}
+			<section class="group">
+				<figure class="group__photo">
+					<img src="{{ get_image(page.group_photo).src|resize(800) }}" alt="{{ get_image(page.group_photo).alt }}" srcset="{{ get_image(page.group_photo).srcset }}">
+				</figure>
+			</section>
+		{% endif %}
 		<article class="studio">
 			<section class="studio__description">
 				<div class="studio__description-column">
@@ -35,7 +42,7 @@
 			{% for person in page.meta('people') %}
 				<article class="person person--{{ person.image_size|lower }}">
 					<figure class="person__headshot">
-						<img src="{{ Image(person.headshot).src|resize(800) }}" alt="{{ Image(person.headshot).alt }}" srcset="{{ Image(person.headshot).srcset }}">
+						<img src="{{ get_image(person.headshot).src|resize(800) }}" alt="{{ get_image(person.headshot).alt }}" srcset="{{ get_image(person.headshot).srcset }}">
 					</figure>
 					<section class="person__primary-information">
 						<h2 class="person__name">{{ person.title }}</h2>

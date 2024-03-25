@@ -12,17 +12,17 @@ gtag('config', 'G-6NEJ67ZRBV');
 	{% if page.title %}
 		{% set meta_title = "Polymode " ~ page.title %}
 		{% set meta_url = page.link %}
-		{% set meta_facebook_image = Image(options.facebook_image).src|resize(1200, 630) %}
-		{% set meta_twitter_image = Image(options.twitter_image).src|resize(1200, 600) %}
+		{% set meta_facebook_image = get_image(options.facebook_image).src|resize(1200, 630) %}
+		{% set meta_twitter_image = get_image(options.twitter_image).src|resize(1200, 600) %}
 	{% elseif post.title %}
 		{% set meta_title = post.title | striptags %}
 		{% set meta_url = post.link %}
-		{% if Image(post.thumbnail_image).post_mime_type == "image/gif" %}
-			{% set meta_facebook_image = Image(post.thumbnail_image).src  %}
-			{% set meta_twitter_image = Image(post.thumbnail_image).src %}
+		{% if get_image(post.thumbnail_image).post_mime_type == "image/gif" %}
+			{% set meta_facebook_image = get_image(post.thumbnail_image).src  %}
+			{% set meta_twitter_image = get_image(post.thumbnail_image).src %}
 		{% else %}
-			{% set meta_facebook_image = Image(post.thumbnail_image).src|resize(1200, 630)  %}
-			{% set meta_twitter_image = Image(post.thumbnail_image).src|resize(1200, 600) %}
+			{% set meta_facebook_image = get_image(post.thumbnail_image).src|resize(1200, 630)  %}
+			{% set meta_twitter_image = get_image(post.thumbnail_image).src|resize(1200, 600) %}
 		{% endif %}
 	{% endif %}
 	{% include 'html-header.twig' %}

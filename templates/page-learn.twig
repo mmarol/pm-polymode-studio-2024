@@ -31,7 +31,7 @@
 					{% if opportunity.embed %}
 						{{ opportunity.meta('embed') }}
 					{% else %}
-						<img class="opportunity__image lazyload" src="{{ Image(opportunity.thumbnail_image).src|resize(300) }}" alt="{{ Image(opportunity.thumbnail_image).alt }}" data-src="{{ Image(opportunity.thumbnail_image).src|resize(800) }}" data-srcset="{{ Image(opportunity.thumbnail_image).srcset }}" data-sizes="auto">
+						<img class="opportunity__image lazyload" src="{{ get_image(opportunity.thumbnail_image).src|resize(300) }}" alt="{{ get_image(opportunity.thumbnail_image).alt }}" data-src="{{ get_image(opportunity.thumbnail_image).src|resize(800) }}" data-srcset="{{ get_image(opportunity.thumbnail_image).srcset }}" data-sizes="auto">
 					{% endif %}
 
 					<div class="opportunity__description">

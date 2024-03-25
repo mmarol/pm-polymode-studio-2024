@@ -115,7 +115,7 @@ function server(cb) {
 	browserSync.init({
 		notify: false,
 		// open: false,
-		proxy: "https://pm-polymode-studio-test.local",
+		proxy: "http://localhost:10004",
 		https: true,
 		injectChanges: true,
 	});

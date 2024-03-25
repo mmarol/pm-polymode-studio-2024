@@ -5,8 +5,9 @@
 
 {% block content %}
 	<main class="project-grid">
+
 		<div class="project-grid__spacer"></div>
-		{% for item in page.meta('projects_and_learning_opportunities') %}
+		{% for item in relations %}
 			{% if item.post_type == "project" %}
 				{% set item_url = item.link %}
 			{% elseif item.post_type == "learning-opportunity" %}
@@ -31,16 +32,21 @@
 							{% set videoHeightValue = videoHeight[1]|split('"') %}
 							{% set videoRatio = videoHeightValue[1]|number_format / videoWidthValue[1]|number_format * 100 %}
 							<div class="project-grid__video-container" width="{{ videoWidthValue[1] }}" height="{{ videoHeightValue[1] }}" style="padding-bottom:{{videoRatio}}%;">
-								<iframe class="project-grid__video lazyload" src='{{ videoUrl[1] }}&autoplay=1&loop=1&autopause=0&background=1' frameborder='0' allow='autoplay; encrypted-media;'></iframe>
+								<iframe class="project-grid__video" src='{{ videoUrl[1] }}&autoplay=1&loop=1&autopause=0&background=1' frameborder='0' allow='autoplay; encrypted-media;'  loading="lazy"></iframe>
 							</div>
 						{% else %}
-							{% if Image(item.thumbnail_image).post_mime_type == "image/gif" %}
-								<img class="project-grid__image lazyload" src="{{ Image(item.thumbnail_image).src }}" alt="{{ Image(item.thumbnail_image).alt }}" data-src="{{ Image(item.thumbnail_image).src }}" data-srcset="{{ Image(item.thumbnail_image).srcset }}" data-sizes="auto">
+							{% if get_image(item.thumbnail_image).post_mime_type == "image/gif" %}
+								<img class="project-grid__image" src="{{ get_image(item.thumbnail_image).src }}" alt="{{ get_image(item.thumbnail_image).alt }}" srcset="{{ get_image(item.thumbnail_image).srcset }}" data-sizes="auto" loading="lazy" width="{{ get_image(item.thumbnail_image).sizes.medium.width }}" height="{{ get_image(item.thumbnail_image).sizes.medium.height }}">
 							{% else %}
-								<img class="project-grid__image lazyload" src="{{ Image(item.thumbnail_image).src|resize(300) }}" alt="{{ Image(item.thumbnail_image).alt }}" data-src="{{ Image(item.thumbnail_image).src|resize(resizeSize) }}" data-srcset="{{ Image(item.thumbnail_image).srcset }}" data-sizes="auto">
+								<img class="project-grid__image" src="{{ get_image(item.thumbnail_image).src|resize(300) }}" alt="{{ get_image(item.thumbnail_image).alt }}"srcset="{{ get_image(item.thumbnail_image).srcset }}" data-sizes="auto" loading="lazy" width="{{ get_image(item.thumbnail_image).sizes.medium.width }}" height="{{ get_image(item.thumbnail_image).sizes.medium.height }}">
 							{% endif %}
+							{# if using the lazyload.js library instead of native lazy loading #}
+							{# {% if get_image(item.thumbnail_image).post_mime_type == "image/gif" %}
+								<img class="project-grid__image lazyload" src="{{ get_image(item.thumbnail_image).src }}" alt="{{ get_image(item.thumbnail_image).alt }}" data-src="{{ get_image(item.thumbnail_image).src }}" data-srcset="{{ get_image(item.thumbnail_image).srcset }}" data-sizes="auto">
+							{% else %}
+								<img class="project-grid__image lazyload" src="{{ get_image(item.thumbnail_image).src|resize(300) }}" alt="{{ get_image(item.thumbnail_image).alt }}" data-src="{{ get_image(item.thumbnail_image).src|resize(resizeSize) }}" data-srcset="{{ get_image(item.thumbnail_image).srcset }}" data-sizes="auto">
+							{% endif %} #}
 						{% endif %}
-
 
 						<h2 class="project-grid__title project-grid__title--{{ item.homepage_size|lower }}">{{ item.title }}
 						</h2>
@@ -48,19 +54,21 @@
 					</a>
 				</figure>
 				{% if item.post_type == "project" %}
-					{% for deliverable in item.meta('deliverables') %}
-						<a href="{{ item_url }}#{{ deliverable.type.name|replace({' ': '-'})|lower }}" class="project-grid__tag project-grid__tag--{{ item.homepage_size|lower }}">{{ deliverable.type.name }}</a>
+					{# If using the Deliverables repeatable in the CMS, use this commented code. It runs slow because it adds too many queries #}
+					{# {% for deliverable in item.deliverables %}
+						<a href="{{ item_url }}#{{ deliverable.type.slug }}" class="project-grid__tag project-grid__tag--{{ item.homepage_size|lower }}">{{ deliverable.type.name }}</a>
+					{% endfor %} #}
+
+					{# If using the Project Tags fields in addition to the Deliverables repeatable, use this code. It runs much faster #}
+					{% for tag in item.project_tags %}
+						{% set tag_info = get_term(tag) %}
+						<a href="{{ item_url }}#{{ tag_info.slug }}" class="project-grid__tag project-grid__tag--{{ item.homepage_size|lower }}">{{ tag_info.name }}</a>
 					{% endfor %}
 				{% elseif item.post_type == "learning-opportunity" %}
 					<p class="project-grid__tag project-grid__tag--{{ item.homepage_size|lower }}">Learning</p>
 				{% endif %}
-
 			</article>
 		{% endfor %}
 
 	</main>
 {% endblock %}
-
-
-{# https://player.vimeo.com/video/813344000 #}
-{# https://player.vimeo.com/video/813343926 #}

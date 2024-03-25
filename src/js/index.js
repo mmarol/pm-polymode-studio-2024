@@ -87,6 +87,10 @@ $(document).on("ready", function () {
 	if ($(".glide")) {
 		setupSliders();
 	}
+
+	$('.project-grid__image').each(function(index, value) {
+		
+	})
 });
 
 $(window).on("load", function () {

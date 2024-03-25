@@ -28,7 +28,7 @@ function setupSliders() {
 		glideArray[i] = new Glide(glide, {
 			type: "carousel",
 			gap: 60,
-			autoplay: 5000,
+			autoplay: false,
 			animationDuration: 500,
 			hoverpause: true,
 			perView: perView,

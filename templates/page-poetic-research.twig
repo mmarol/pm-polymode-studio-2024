@@ -9,7 +9,7 @@
 	</section>
 	<section class="poetic__images">
 		{% for row in page.meta('hover_images') %}
-			<figure class="poetic__image" id="{{ row.id }}" style="background-image:url({{ Image(row.image).src }})">{# <img src="{{ Image(row.image).src|resize(400) }}" alt=""> #}</figure>
+			<figure class="poetic__image" id="{{ row.id }}" style="background-image:url({{ get_image(row.image).src }})">{# <img src="{{ get_image(row.image).src|resize(400) }}" alt=""> #}</figure>
 		{% endfor %}
 	</section>
 {% endblock %}
