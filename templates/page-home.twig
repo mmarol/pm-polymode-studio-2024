@@ -20,6 +20,11 @@
 				{% set resizeSize = 800 %}
 			{% endif %}
 
+			{% if loop.index > 6 %}
+				{% set lazyloadAttribute = 'loading="lazy"' %}
+			{% endif %}
+			
+
 			<article class="project-grid__item project-grid__item--{{ item.homepage_size|lower }}">
 				<figure class="project-grid__image-container">
 					<a href="{{ item_url }}" class="project-grid__link">
@@ -32,13 +37,13 @@
 							{% set videoHeightValue = videoHeight[1]|split('"') %}
 							{% set videoRatio = videoHeightValue[1]|number_format / videoWidthValue[1]|number_format * 100 %}
 							<div class="project-grid__video-container" width="{{ videoWidthValue[1] }}" height="{{ videoHeightValue[1] }}" style="padding-bottom:{{videoRatio}}%;">
-								<iframe class="project-grid__video" src='{{ videoUrl[1] }}&autoplay=1&loop=1&autopause=0&background=1' frameborder='0' allow='autoplay; encrypted-media;'  loading="lazy"></iframe>
+								<iframe class="project-grid__video" src='{{ videoUrl[1] }}&autoplay=1&loop=1&autopause=0&background=1' frameborder='0' allow='autoplay; encrypted-media;' {{ lazyloadAttribute }}></iframe>
 							</div>
 						{% else %}
 							{% if get_image(item.thumbnail_image).post_mime_type == "image/gif" %}
-								<img class="project-grid__image" src="{{ get_image(item.thumbnail_image).src }}" alt="{{ get_image(item.thumbnail_image).alt }}" srcset="{{ get_image(item.thumbnail_image).srcset }}" data-sizes="auto" loading="lazy" width="{{ get_image(item.thumbnail_image).sizes.medium.width }}" height="{{ get_image(item.thumbnail_image).sizes.medium.height }}">
+								<img class="project-grid__image" src="{{ get_image(item.thumbnail_image).src }}" alt="{{ get_image(item.thumbnail_image).alt }}" srcset="{{ get_image(item.thumbnail_image).srcset }}" data-sizes="auto" width="{{ get_image(item.thumbnail_image).sizes.medium.width }}" height="{{ get_image(item.thumbnail_image).sizes.medium.height }}" {{ lazyloadAttribute }}>
 							{% else %}
-								<img class="project-grid__image" src="{{ get_image(item.thumbnail_image).src|resize(300) }}" alt="{{ get_image(item.thumbnail_image).alt }}"srcset="{{ get_image(item.thumbnail_image).srcset }}" data-sizes="auto" loading="lazy" width="{{ get_image(item.thumbnail_image).sizes.medium.width }}" height="{{ get_image(item.thumbnail_image).sizes.medium.height }}">
+								<img class="project-grid__image" src="{{ get_image(item.thumbnail_image).src|resize(300) }}" alt="{{ get_image(item.thumbnail_image).alt }}"srcset="{{ get_image(item.thumbnail_image).srcset }}" data-sizes="auto" width="{{ get_image(item.thumbnail_image).sizes.medium.width }}" height="{{ get_image(item.thumbnail_image).sizes.medium.height }}" {{ lazyloadAttribute }}>
 							{% endif %}
 							{# if using the lazyload.js library instead of native lazy loading #}
 							{# {% if get_image(item.thumbnail_image).post_mime_type == "image/gif" %}

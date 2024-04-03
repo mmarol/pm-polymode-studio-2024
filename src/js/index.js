@@ -77,20 +77,10 @@ $(document).on("ready", function () {
 		toggleBios(person, peopleMasonry);
 	}
 
-	// $(".carousel__image-loader").each(function () {
-	// 	let carouselImage = $(this);
-	// 	carouselImage.imagesLoaded(function () {
-	// 		carouselImage.addClass("show");
-	// 	});
-	// });
-
 	if ($(".glide")) {
 		setupSliders();
 	}
 
-	$('.project-grid__image').each(function(index, value) {
-		
-	})
 });
 
 $(window).on("load", function () {
