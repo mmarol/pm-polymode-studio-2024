@@ -20,10 +20,12 @@
 				{% set resizeSize = 800 %}
 			{% endif %}
 
-			{% if loop.index > 6 %}
-				{% set lazyloadAttribute = 'loading="lazy"' %}
-			{% endif %}
-			
+			{% set lazyloadClass = 'lazyload' %}
+			{% set lazyloadSrcset = '' %}
+			{% set lazyloadSizes = '' %}
+			{% set lazyloadDataSrc = get_image(item.thumbnail_image).src("medium") %}
+			{% set lazyloadDataSrcset = get_image(item.thumbnail_image).srcset %}
+			{% set lazyloadDataSizes = 'auto' %}
 
 			<article class="project-grid__item project-grid__item--{{ item.homepage_size|lower }}">
 				<figure class="project-grid__image-container">
@@ -41,16 +43,10 @@
 							</div>
 						{% else %}
 							{% if get_image(item.thumbnail_image).post_mime_type == "image/gif" %}
-								<img class="project-grid__image" src="{{ get_image(item.thumbnail_image).src }}" alt="{{ get_image(item.thumbnail_image).alt }}" srcset="{{ get_image(item.thumbnail_image).srcset }}" data-sizes="auto" width="{{ get_image(item.thumbnail_image).sizes.medium.width }}" height="{{ get_image(item.thumbnail_image).sizes.medium.height }}" {{ lazyloadAttribute }}>
+								<img class="project-grid__image {{ lazyloadClass }}" src="{{ get_image(item.thumbnail_image).src }}" alt="{{ get_image(item.thumbnail_image).alt }}" srcset="{{ lazyloadSrcset }}" sizes="{{ lazyloadSizes }}" data-src="{{ lazyloadDataSrc}}" data-srcset="{{ lazyloadDataSrcset}}" data-sizes="{{ lazyloadDataSizes}}" width="{{ get_image(item.thumbnail_image).sizes.medium.width }}" height="{{ get_image(item.thumbnail_image).sizes.medium.height }}" {{ lazyloadAttribute }}>
 							{% else %}
-								<img class="project-grid__image" src="{{ get_image(item.thumbnail_image).src|resize(300) }}" alt="{{ get_image(item.thumbnail_image).alt }}"srcset="{{ get_image(item.thumbnail_image).srcset }}" data-sizes="auto" width="{{ get_image(item.thumbnail_image).sizes.medium.width }}" height="{{ get_image(item.thumbnail_image).sizes.medium.height }}" {{ lazyloadAttribute }}>
+								<img class="project-grid__image {{ lazyloadClass }}" src="{{ get_image(item.thumbnail_image).src('medium') }}" alt="{{ get_image(item.thumbnail_image).alt }}" srcset="{{ lazyloadSrcset }}" sizes="{{ lazyloadSizes }}" data-src="{{ lazyloadDataSrc}}" data-srcset="{{ lazyloadDataSrcset}}" data-sizes="{{ lazyloadDataSizes}}" width="{{ get_image(item.thumbnail_image).sizes.medium.width }}" height="{{ get_image(item.thumbnail_image).sizes.medium.height }}" {{ lazyloadAttribute }}>
 							{% endif %}
-							{# if using the lazyload.js library instead of native lazy loading #}
-							{# {% if get_image(item.thumbnail_image).post_mime_type == "image/gif" %}
-								<img class="project-grid__image lazyload" src="{{ get_image(item.thumbnail_image).src }}" alt="{{ get_image(item.thumbnail_image).alt }}" data-src="{{ get_image(item.thumbnail_image).src }}" data-srcset="{{ get_image(item.thumbnail_image).srcset }}" data-sizes="auto">
-							{% else %}
-								<img class="project-grid__image lazyload" src="{{ get_image(item.thumbnail_image).src|resize(300) }}" alt="{{ get_image(item.thumbnail_image).alt }}" data-src="{{ get_image(item.thumbnail_image).src|resize(resizeSize) }}" data-srcset="{{ get_image(item.thumbnail_image).srcset }}" data-sizes="auto">
-							{% endif %} #}
 						{% endif %}
 
 						<h2 class="project-grid__title project-grid__title--{{ item.homepage_size|lower }}">{{ item.title }}
@@ -59,15 +55,9 @@
 					</a>
 				</figure>
 				{% if item.post_type == "project" %}
-					{# If using the Deliverables repeatable in the CMS, use this commented code. It runs slow because it adds too many queries #}
-					{# {% for deliverable in item.deliverables %}
-						<a href="{{ item_url }}#{{ deliverable.type.slug }}" class="project-grid__tag project-grid__tag--{{ item.homepage_size|lower }}">{{ deliverable.type.name }}</a>
-					{% endfor %} #}
-
-					{# If using the Project Tags fields in addition to the Deliverables repeatable, use this code. It runs much faster #}
-					{% for tag in item.project_tags %}
+						{% for tag in item.project_tags %}
 						{% set tag_info = get_term(tag) %}
-						<a href="{{ item_url }}#{{ tag_info.slug }}" class="project-grid__tag project-grid__tag--{{ item.homepage_size|lower }}">{{ tag_info.name }}</a>
+							<a href="{{ item_url }}#{{ tag_info.slug }}" class="project-grid__tag project-grid__tag--{{ item.homepage_size|lower }}"> {{ tag_info.name }}</a>
 					{% endfor %}
 				{% elseif item.post_type == "learning-opportunity" %}
 					<p class="project-grid__tag project-grid__tag--{{ item.homepage_size|lower }}">Learning</p>
