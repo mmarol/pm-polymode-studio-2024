@@ -1,0 +1,37 @@
+@use "../abstracts/type-styles";
+@use "../abstracts/variables";
+@use "../utilities/mixins";
+
+.default-page {
+    display: flex;
+    flex-wrap: wrap;
+    margin: var(--spacing-s);
+    padding-top: var(--spacing-s);
+    @include mixins.respond-above(variables.$break-s) {
+        margin: var(--spacing-m);
+        padding-top: var(--spacing-m);
+    }
+    @include mixins.respond-above(variables.$break-m) {
+        margin: var(--spacing-l);
+        padding-top: var(--spacing-l);
+    }
+    @include mixins.respond-above(variables.$break-l) {
+        margin: var(--spacing-xl);
+        padding-top: var(--spacing-xl);
+    }
+
+    h1 {
+      @extend %heading-alt;
+      line-height: 120%;
+    }
+
+    h2 {
+      @extend %heading-secondary;
+      line-height: 120%;
+    }
+
+    h3 {
+      @extend %heading-tertiary;
+      line-height: 120%;
+    }
+}

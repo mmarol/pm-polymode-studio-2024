@@ -117,7 +117,7 @@
 }
 
 .poetic-research__title {
-    @extend %nav-title-alt;
+    @extend %heading-alt;
     margin: var(--spacing-xl) 0 0 0;
     display: inline-block;
 
@@ -162,6 +162,28 @@
 .person__spacer {
     width: var(--spacing-m);
     height: var(--spacing-m);
+}
+
+.people__title {
+    @extend %heading-alt;
+    margin: var(--spacing-xxl) 0 var(--spacing-s) 0;
+    padding-bottom: 0;
+    display: inline-block;
+    flex-basis: 100%;
+    width: 100%;
+
+    @include mixins.respond-above(variables.$break-s) {
+        flex-basis: 100%;
+        width: 100%;
+    }
+    @include mixins.respond-above(variables.$break-m) {
+        flex-basis: 100%;
+        width: 100%;
+    }
+    @include mixins.respond-above(variables.$break-l) {
+        flex-basis: 100%;
+        width: 100%;
+    }
 }
 
 .person--small {

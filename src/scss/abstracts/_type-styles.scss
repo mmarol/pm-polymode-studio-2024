@@ -178,6 +178,22 @@ This uses the type size mixin and variables defined in _type-sizes.scss
     font-variation-settings: "RLNS" 300;
 }
 
+%heading-alt {
+    font-family: "PolymodeSans-Var", "Opulence", sans-serif;
+    font-weight: bold;
+    font-size: var(--type-xl);
+    background-image: var(--color-gradient);
+    background-clip: text;
+    text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    font-variation-settings: "RLNS" 1000;
+    font-variant-numeric: oldstyle-nums;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
 %body-large {
     font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
     font-weight: normal;

@@ -45,7 +45,7 @@
 						<img src="{{ get_image(person.headshot).src|resize(800) }}" alt="{{ get_image(person.headshot).alt }}" srcset="{{ get_image(person.headshot).srcset }}">
 					</figure>
 					<section class="person__primary-information">
-						<h2 class="person__name">{{ person.post_title }}</h2>
+						<h3 class="person__name">{{ person.post_title }}</h3>
 						<p class="person__title">{{ person.job_title }}</p>
 					</section>
 					<button class="person__show person__show--closed"></button>
@@ -54,6 +54,27 @@
 					</section>
 				</article>
 			{% endfor %}
+
+			{% if page.alumni %}
+				<h2 class="person people__title">{{ page.alumni_subtitle }}</h2>
+				{% for person in page.alumni %}
+					<article class="person person--{{ person.image_size|lower }}">
+						<figure class="person__headshot">
+							<img src="{{ get_image(person.headshot).src|resize(800) }}" alt="{{ get_image(person.headshot).alt }}" srcset="{{ get_image(person.headshot).srcset }}">
+						</figure>
+						<section class="person__primary-information">
+							<h3 class="person__name">{{ person.post_title }}</h3>
+							<p class="person__title">{{ person.job_title }}</p>
+						</section>
+						<button class="person__show person__show--closed"></button>
+						<section class="person__secondary-information person__secondary-information--closed">
+							{{ person.bio }}
+						</section>
+					</article>
+				{% endfor %}
+			{% endif %}
 		</article>
+
+
 	</main>
 {% endblock %}
