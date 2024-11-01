@@ -1,5 +1,6 @@
 /composer.lock
 /vendor/
+vendor
 /wordpress/
 /node_modules/
 .DS_store
