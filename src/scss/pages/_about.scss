@@ -32,6 +32,14 @@
     }
 }
 
+
+
+/*  
+-------------------------------------------- 
+Studio
+--------------------------------------------
+*/
+
 .studio {
     // @include mixins.columns(4);
     // margin-bottom: var(--spacing-l);
@@ -52,7 +60,7 @@
     @include mixins.respond-above(variables.$break-l) {
         columns: 1;
         @include mixins.columns(4);
-        margin-bottom: var(--spacing-xxl);
+        margin-bottom: var(--spacing-l);
     }
 }
 
@@ -68,36 +76,13 @@
 .studio__description-title {
 }
 
-.studio__contact {
-    display: flex;
-    flex-wrap: wrap;
 
-    @extend %body-small;
-}
 
-.studio__contact-column {
-    margin-right: var(--spacing-s);
-    margin-bottom: var(--spacing-s);
-
-    @include mixins.respond-above(variables.$break-l) {
-        flex-basis: calc((100% / 3) - var(--spacing-s));
-        flex-grow: 1;
-        flex-shrink: 1;
-    }
-
-    p {
-        margin: 0;
-    }
-}
-
-.studio__contact-info {
-    a {
-        @extend %external-link;
-    }
-}
-
-.studio__contact-prefix {
-}
+/*  
+-------------------------------------------- 
+Poetic research
+--------------------------------------------
+*/
 
 .poetic-research {
     margin-bottom: var(--spacing-l);
@@ -125,6 +110,91 @@
         margin: 0;
     }
 }
+
+
+/*  
+-------------------------------------------- 
+Contact
+--------------------------------------------
+*/
+
+.contact {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    width: 100%;
+    margin-bottom: var(--spacing-xxl);
+
+    @include mixins.respond-above(variables.$break-s) {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-m);
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+    }
+}
+
+.contact__details {
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 50%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-direction: column;
+    align-content: start;
+    gap: var(--spacing-m);
+    @extend %body-small;
+
+    @include mixins.respond-above(variables.$break-l) {
+        flex-direction: row;
+    }
+}
+
+.contact__details-column {
+    // margin-right: var(--spacing-s);
+    // margin-bottom: var(--spacing-s);
+
+    @include mixins.respond-above(variables.$break-l) {
+        // flex-basis: calc((100% / 3) - var(--spacing-s));
+        flex-basis: auto;
+        flex-grow: 1;
+        flex-shrink: 1;
+    }
+
+    p {
+        margin: 0;
+    }
+}
+
+.contact__details-info {
+    a {
+        @extend %external-link;
+    }
+}
+
+.contact__details-prefix {
+}
+
+.newsletter {
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 50%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin: 0;
+}
+
+// form CSS in vendors/_mc4wp-plugin.scss
+
+
+/*  
+-------------------------------------------- 
+People
+--------------------------------------------
+*/
 
 .people {
     display: flex;

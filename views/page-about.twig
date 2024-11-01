@@ -1,0 +1,85 @@
+{% extends "base.twig" %}
+
+{% set page_title = page.title %}
+{% set meta_description = page.studio_description %}
+
+{% block content %}
+	<main class="about">
+		{% if page.group_photo %}
+			<section class="group">
+				<figure class="group__photo">
+					<img src="{{ get_image(page.group_photo).src|resize(800) }}" alt="{{ get_image(page.group_photo).alt }}" srcset="{{ get_image(page.group_photo).srcset }}">
+				</figure>
+			</section>
+		{% endif %}
+		<article class="studio">
+			<section class="studio__description">
+				<div class="studio__description-column">
+					{{ page.meta('studio_description') }}
+				</div>
+			</section>
+		</article>
+		<article class="poetic-research">
+			<h2 class="poetic-research__title">{{ page.poetic_research_title }}</h2>
+			{{ page.meta('poetic_research_description') }}
+		</article>
+		<article class="contact">
+			<section class="contact__details">
+				<aside class="contact__details-column">{{ page.meta('location_1') }}</aside>
+				<aside class="contact__details-column">{{ page.meta('location_2') }}</aside>
+				<aside class="contact__details-column">
+					<p class="contact__details-info">
+						<span class="contact__details-prefix">T</span>
+						<a href="tel:{{ page.telephone|trim|replace({'(': '', ')': '', ' ': '', '.': '', '-': ''}) }}">{{ page.telephone }}</a>
+					</p>
+					<p class="contact__details-info">
+						<span class="contact__details-prefix">E</span>
+						<a href="mailto:{{ page.email }}">{{ page.email }}</a>
+					</p>
+				</aside>
+			</section>
+			<section class="newsletter">
+				{% apply shortcodes %}[mc4wp_form id=4113]{% endapply %}
+			</section>
+		</article>
+		<article class="people">
+			<div class="person__spacer"></div>
+			{% for person in page.people %}
+				<article class="person person--{{ person.image_size|lower }}">
+					<figure class="person__headshot">
+						<img src="{{ get_image(person.headshot).src|resize(800) }}" alt="{{ get_image(person.headshot).alt }}" srcset="{{ get_image(person.headshot).srcset }}">
+					</figure>
+					<section class="person__primary-information">
+						<h3 class="person__name">{{ person.post_title }}</h3>
+						<p class="person__title">{{ person.job_title }}</p>
+					</section>
+					<button class="person__show person__show--closed"></button>
+					<section class="person__secondary-information person__secondary-information--closed">
+						{{ person.bio }}
+					</section>
+				</article>
+			{% endfor %}
+
+			{% if page.alumni %}
+				<h2 class="person people__title">{{ page.alumni_subtitle }}</h2>
+				{% for person in page.alumni %}
+					<article class="person person--{{ person.image_size|lower }}">
+						<figure class="person__headshot">
+							<img src="{{ get_image(person.headshot).src|resize(800) }}" alt="{{ get_image(person.headshot).alt }}" srcset="{{ get_image(person.headshot).srcset }}">
+						</figure>
+						<section class="person__primary-information">
+							<h3 class="person__name">{{ person.post_title }}</h3>
+							<p class="person__title">{{ person.job_title }}</p>
+						</section>
+						<button class="person__show person__show--closed"></button>
+						<section class="person__secondary-information person__secondary-information--closed">
+							{{ person.bio }}
+						</section>
+					</article>
+				{% endfor %}
+			{% endif %}
+		</article>
+
+
+	</main>
+{% endblock %}

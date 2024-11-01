@@ -78,7 +78,7 @@
 }
 
 .project__deliverable-button {
-    @extend %button;
+    @extend %tab;
     transition: color 0.3s ease;
     cursor: pointer;
 

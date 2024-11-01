@@ -11,6 +11,5 @@ $context                = Timber::context();
 $context['page']        = Timber::get_post();
 $context['relations']   = Timber::get_posts(get_field('projects_and_learning_opportunities'));
 
-$templates        = array('page-home.twig');
 
-Timber::render($templates, $context);
+Timber::render('page-home.twig', $context);

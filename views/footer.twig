@@ -1,0 +1,10 @@
+<div class="footer__item footer__newsletter">{% apply shortcodes %}[mc4wp_form id=4113]{% endapply %}</div>
+<div class="footer__item footer__socials">
+	{% for link_item in options.links %}
+		<a href="{{ link_item.link.url }}" class="footer__link" target="{{ link_item.link.target }}">{{ link_item.link.title }}</a>
+	{% endfor %}
+</div>
+<div class="footer__item footer__copyright">
+	<p>{{ options.additional_info }}</p>
+	<p>{{ options.copyright }}</p>
+</div>

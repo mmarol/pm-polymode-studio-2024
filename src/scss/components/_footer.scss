@@ -3,32 +3,88 @@
 @use "../abstracts/variables";
 
 .footer {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    // flex-wrap: wrap;
     justify-content: space-between;
     z-index: 100;
     background: linear-gradient(var(--color-transparent), var(--color-background) 50%);
     box-sizing: border-box;
-    // background: red;
+    gap: var(--spacing-m) var(--spacing-xl);
 
     padding: var(--spacing-s);
     padding-top: var(--spacing-s);
     @include mixins.respond-above(variables.$break-s) {
         padding: var(--spacing-m);
         padding-top: var(--spacing-m);
+        grid-template-columns: 2fr 1fr;
     }
     @include mixins.respond-above(variables.$break-m) {
         padding: var(--spacing-l);
         padding-top: var(--spacing-l);
+        grid-template-columns: 3fr 1fr 2fr;
     }
     @include mixins.respond-above(variables.$break-l) {
         padding: var(--spacing-xl);
         padding-top: var(--spacing-xl);
+        grid-template-columns: 3fr 1fr 2fr;
+    }
+    @include mixins.respond-above(variables.$break-xl) {
+        padding: var(--spacing-xl);
+        padding-top: var(--spacing-xl);
+        grid-template-columns: 3fr 1fr 1fr;
     }
 }
 
 .footer__item {
     @extend %footer;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: start;
+    gap: var(--spacing-xs);
+
+    p {
+        margin: 0;
+    }
+}
+
+.footer__newsletter {
+    flex-grow: 3;
+
+    @include mixins.respond-above(variables.$break-xl) {
+        flex-grow: 1;
+    }
+}
+
+.footer__socials {
+    flex-grow: 1;
+    margin-top: var(--spacing-m);
+
+    @include mixins.respond-above(variables.$break-xl) {
+        flex-direction: row;
+    }
+}
+
+.footer__copyright {
+    flex-grow: 1;
+    margin-top: var(--spacing-m);
+    flex-basis: 100%;
+    flex-direction: row;
+    grid-column: span 2;
+
+    @include mixins.respond-above(variables.$break-m) {
+        flex-basis: auto;
+        grid-column: span 1;
+    }
+
+    p {
+        flex-basis: 50%;
+
+        @include mixins.respond-above(variables.$break-m) {
+            flex-basis: 100%;
+        }
+    }
 }
 
 .footer__link {

@@ -1,0 +1,117 @@
+@use "../abstracts/type-styles";
+@use "../abstracts/variables";
+@use "../utilities/mixins";
+
+.mc4wp-form {
+    width: 100%;
+    background-color: var(--color-background);
+}
+
+.mc4wp-form-fields {
+    display: flex;
+    flex-wrap: wrap;
+    // align-items: start;
+    // justify-content: start;
+    gap: var(--spacing-xs);
+
+    h3 {
+        @extend %body-small;
+        margin: 0;
+        flex-basis: 100%;
+        width: 100%;
+        font-weight: bold;
+    }
+
+    label {
+        flex-basis: 100%;
+    }
+
+    input[type=text], input[type=email] {
+        border: 1px solid var(--color-text);
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        border-radius: 0px;
+        background: transparent;
+        color: var(--color-text);
+        // margin-bottom: var(--spacing-s);
+        padding: var(--spacing-xs);
+        flex-basis: 100%;
+        font-size: var(--type-s);
+
+        @include mixins.respond-above(variables.$break-s) {
+            flex-basis: 100%;
+        }
+
+        @include mixins.respond-above(variables.$break-m) {
+            flex-basis: 100%;
+        }
+        
+        @include mixins.respond-above(variables.$break-l) {
+            flex-basis: auto;
+            flex-grow: 3;
+            max-width: 100%;
+        }
+
+        &:focus {
+            outline: 1px solid var(--color-secondary-2);
+            border-color: var(--color-secondary-2);
+        }
+    }
+
+    input[type=submit] {
+        @extend %button;
+        flex-basis: 100%;
+
+        @include mixins.respond-above(variables.$break-s) {
+            flex-basis: 100%;
+        }
+
+        @include mixins.respond-above(variables.$break-m) {
+            flex-basis: 100%;
+        }
+        
+        @include mixins.respond-above(variables.$break-l) {
+            flex-basis: auto;
+            flex-grow: 1;
+            max-width: 100%;
+        }
+    }
+}
+
+.contact .mc4wp-form-fields {
+    flex-direction: row;
+}
+
+.footer {
+
+    .mc4wp-form-fields {
+        flex-direction: column;
+        max-width: 25rem;
+
+        @include mixins.respond-above(variables.$break-xl) {
+            flex-direction: row;
+            max-width: 90%;
+        }
+    }
+
+}
+
+.mc4wp-response {
+
+}
+
+.mc4wp-alert {
+    font-size: var(--type-s);
+}
+
+.mc4wp-success {
+    color: var(--color-secondary-2);
+}
+
+.mc4wp-notice {
+	color: var(--color-secondary-2);
+}
+
+.mc4wp-error {
+	color: var(--color-primary-2);
+}

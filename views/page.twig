@@ -1,0 +1,12 @@
+{% extends "base.twig" %}
+
+{% set page_title = page.title %}
+
+{% block content %}
+
+	<main class="default-page">
+		<article class="default__article">
+			{{post.content}}
+		</article>
+	</main>
+{% endblock %}

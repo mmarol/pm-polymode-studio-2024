@@ -1,0 +1,15 @@
+{% extends "base.twig" %}
+
+{% set meta_description = site.description %}
+{% set page_title = page.title %}
+
+{% block content %}
+	<section class="poetic__text">
+		{{ page.meta('text') }}
+	</section>
+	<section class="poetic__images">
+		{% for row in page.meta('hover_images') %}
+			<figure class="poetic__image" id="{{ row.id }}" style="background-image:url({{ get_image(row.image).src }})">{# <img src="{{ get_image(row.image).src|resize(400) }}" alt=""> #}</figure>
+		{% endfor %}
+	</section>
+{% endblock %}

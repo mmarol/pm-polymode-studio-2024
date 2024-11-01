@@ -153,6 +153,7 @@ This uses the type size mixin and variables defined in _type-sizes.scss
     color: var(--color-text);
     font-variant-numeric: oldstyle-nums;
     font-variation-settings: "RLNS" 300;
+
     @include mixins.respond-above(variables.$break-m) {
         font-size: var(--type-xl);
     }
@@ -237,7 +238,7 @@ This uses the type size mixin and variables defined in _type-sizes.scss
     line-height: 100%;
 }
 
-%button {
+%tab {
     font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
     font-weight: bold;
     font-size: var(--type-m);
@@ -256,6 +257,34 @@ This uses the type size mixin and variables defined in _type-sizes.scss
 
     &:active {
         color: var(--color-primary-1);
+    }
+}
+
+%button {
+    clear: both;
+    color: var(--color-background);
+    background: var(--color-secondary-2);
+    border: 0 none;
+    border-radius: 0px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
+    font-weight: bold;
+    font-size: var(--type-s);
+    line-height: 100%;
+    margin: 0;
+    padding: var(--spacing-xs) var(--spacing-xs);
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: fit-content;
+    width: -moz-fit-content;
+    text-transform: uppercase;
+
+    &:hover {
+        background: var(--color-primary-1);
     }
 }
 

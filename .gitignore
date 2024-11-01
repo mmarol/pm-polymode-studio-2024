@@ -1,4 +1,5 @@
-node_modules
-vendor
-dist
+/composer.lock
+/vendor/
+/wordpress/
+/node_modules/
 .DS_store
